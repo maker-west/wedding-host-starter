@@ -1,0 +1,21 @@
+{
+  "name": "host-desk-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "婚礼主持工作台（可改造版）：纯静态，改 config.js 就能变成你自己的",
+  "scripts": {
+    "build": "python3 tools/build_single.py",
+    "dist": "python3 tools/build_dist.py",
+    "check": "node --check config.js && node --check app.js && node --check audio.js && node --check engine.js && node --check importers.js && node --check llm.js && node --check plan.js && node --check stylepacks.js && node --check qr.js && node --check seed.js",
+    "smoke": "node tools/smoke.js",
+    "plan": "node tools/plan_check.js",
+    "pack": "node tools/pack_check.js",
+    "edit": "node tools/edit_check.js",
+    "share": "node tools/share_check.js",
+    "llm": "node tools/llm_check.js",
+    "verify": "npm run check && npm run build && npm run smoke"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

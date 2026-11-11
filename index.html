@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 下面这几行是「没加载脚本时的兜底」。
+     真正生效的标题、描述、主题色、favicon 都由 config.js 覆盖，
+     所以你只需要改 config.js，不用动这里。 -->
+<title>主持工作台 · 婚礼</title>
+<meta name="description" content="婚礼主持人的一站式工作台。">
+<meta property="og:title" content="主持工作台 · 婚礼">
+<meta property="og:description" content="问卷 → 台词 → 流程 → 歌单 → 现场，一个页面走完。">
+<meta name="theme-color" content="#8C3B47">
+<link rel="icon" href="data:,">
+
+<!-- 配置必须第一个加载：主题色、标题、环节表都从这里来 -->
+<script src="config.js"></script>
+<script>
+  /* 在样式表之前把色板写进 CSS 变量，避免刷新时闪一下默认色 */
+  WB.applyTheme();
+  WB.applyMeta();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <!-- 这里的字会被 config.js 里的 brand 覆盖，改品牌不用动 HTML -->
+    <div class="brand">
+      <div class="seal">台</div>
+      <div>
+        <h1>主持工作台</h1>
+        <p>婚礼主持工作台</p>
+      </div>
+    </div>
+
+    <nav class="nav" id="nav">
+      <div class="nav-label">今天</div>
+      <a data-v="dash" href="#dash"><svg viewBox="0 0 24 24"><path d="M4 12h7V4H4zM13 20h7v-8h-7zM13 9h7V4h-7zM4 20h7v-5H4z"/></svg>系统工作台</a>
+      <div class="nav-label">剧本</div>
+      <a data-v="script" href="#script"><svg viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>一键主持稿<span class="badge" id="badgeScript">—</span></a>
+      <a data-v="flow" href="#flow"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/><circle cx="18" cy="12" r="2"/><circle cx="20" cy="18" r="2"/></svg>流程表</a>
+      <a data-v="songs" href="#songs"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>婚礼歌单</a>
+      <div class="nav-label">场次</div>
+      <a data-v="calendar" href="#calendar"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>档期管理</a>
+      <a data-v="survey" href="#survey"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>调查问卷</a>
+      <div class="nav-label">现场</div>
+      <a data-v="sandbox" href="#sandbox"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 3-3 6 5"/><circle cx="7" cy="6" r="2"/></svg>演示沙盘</a>
+      <a data-v="player" href="#player"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>播放器</a>
+      <a data-v="prompter" href="#prompter"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h6"/></svg>提词器</a>
+      <a data-v="templates" href="#templates"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>图片模板</a>
+    </nav>
+
+    <div class="side-foot">
+      <div class="picker" id="picker">
+        <button class="picker-btn" id="pickerBtn">
+          <span class="d" id="pkDay">08</span>
+          <span>
+            <span class="t" id="pkNames">—</span>
+            <span class="s" id="pkWhere">还没有场次</span>
+          </span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;opacity:.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="picker-menu" id="pickerMenu"></div>
+      </div>
+      <button class="side-link" id="openExports">导出记录 · 文件在哪</button>
+      <p class="side-note" id="sideNote">数据保存在本机浏览器，可随时导出备份。</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="pgTitle">系统工作台</h2>
+        <p class="sub" id="pgSub">今天的场次、待办与断点</p>
+      </div>
+      <div class="spacer"></div>
+      <div id="topMeta" style="display:flex;gap:8px;align-items:center"></div>
+    </header>
+    <div class="view" id="view"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="js-err" id="jsErr" role="alert"></div>
+<div class="modal-bg" id="modalBg"><div class="modal"><div class="mh"><h3 id="modalTitle"></h3><div style="margin-left:auto"><button class="btn ghost" id="modalClose">关闭</button></div></div><div class="mb" id="modalBody"></div></div></div>
+
+<noscript>
+  <div class="js-err on">这个预览窗口没有运行脚本，所以点哪里都不会切换。请双击 index.html 用 Chrome / Safari 打开，或告诉我「发布成链接」，我给你一个可交互的地址。</div>
+</noscript>
+
+<script>
+(function () {
+  var shown = 0;
+  function show(msg) {
+    var el = document.getElementById('jsErr');
+    if (!el) { el = document.createElement('div'); el.id = 'jsErr'; el.className = 'js-err'; document.body.appendChild(el); }
+    if (shown > 3) return;
+    shown++;
+    el.innerHTML = '<b>页面脚本报错</b>' + (msg || '') +
+      '<button class="js-err-x" onclick="this.parentNode.classList.remove(\'on\')">×</button>';
+    el.classList.add('on');
+    try { console.error('[主持工作台]', msg); } catch (e) {}
+  }
+  window.__showFatal = function (e) { show('：' + (e && e.message || e)); };
+  window.addEventListener('error', function (ev) {
+    if (ev && ev.message) show('：' + ev.message + (ev.lineno ? '（第 ' + ev.lineno + ' 行）' : ''));
+  }, true);
+  window.addEventListener('unhandledrejection', function (ev) {
+    show('：' + (ev && ev.reason && ev.reason.message || ev.reason || '未知'));
+  });
+})();
+</script>
+
+<script src="llm.js"></script>
+<script src="importers.js"></script>
+<script src="seed.js"></script>
+<script src="engine.js"></script>
+<script src="qr.js"></script>
+<script src="audio.js"></script>
+<script src="stylepacks.js"></script>
+<script src="plan.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

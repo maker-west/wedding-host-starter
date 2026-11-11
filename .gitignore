@@ -1,0 +1,12 @@
+# 依赖
+node_modules/
+
+# 构建产物（python3 tools/build_single.py 生成）
+工作台.html
+dist/
+
+# 系统文件
+.DS_Store
+
+# 打包
+*.zip

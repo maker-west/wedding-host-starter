@@ -1,0 +1,58 @@
+# 使用许可 · Personal Use License
+
+Copyright (c) 2026 婚礼主持工作台作者。保留署名权。
+
+这份代码公开在 GitHub 上，**免费给同行拿去用、拿去改**。
+它不是商业软件，所以下面这些限制请遵守。
+
+---
+
+## 你可以
+
+1. **自己用。** 用在你自己的主持工作里，接多少场都行，不限场次。
+2. **改。** 改品牌、改配色、改环节、改代码逻辑，改成什么样都行。
+3. **给自己团队用。** 你和你的助理、搭档，在你们自己的工作范围内使用。
+4. **分享给同行。** 把原版或你改过的版本发给别的婚礼主持人，让他们自己用。
+5. **用自己的成果。** 用它导出的稿子、流程表、走位图、图片，是你的工作成果，随便用。
+6. **二次开发。** Fork、提 PR、做自己的分支，都可以。
+
+## 你不可以
+
+1. **售卖。** 不能拿它（原版或改过的）做付费产品、付费模板、付费课程、付费社群的一部分。
+2. **做成对外收费的服务。** 不能部署成需要付费或注册才能用的网站、小程序、SaaS。
+3. **打包进商业资料包。** 不能放进以盈利为目的的课程包、资源包、素材库里分发。
+4. **去掉署名当自己的原创作品发布。** 改可以，改完说是自己从零写的，不行。
+
+超出以上范围的授权，单独联系作者。
+
+---
+
+## 关于语料
+
+这份代码是**可改造版**：结构、交互、引擎都是完整的，但语料刻意留空
+（风格句库、样本、金句库都是占位提示）。留空的部分是你自己的作业，
+填成什么样由你决定，也不在本许可范围内。
+
+## 免责
+
+软件按「现状」提供，不附带任何明示或暗示的担保。
+
+作者不对使用本软件造成的任何损失负责，包括但不限于：
+现场事故、稿件内容错误、数据丢失、浏览器清缓存导致的数据丢失、
+以及因使用本软件产生的任何直接或间接损失。
+
+**重要场次请务必导出备份，并打印纸质稿。**
+
+---
+
+## English (short version)
+
+Free for personal and professional use by wedding hosts, including modification,
+team use, and sharing with other hosts. Forking and pull requests are welcome.
+
+**Not allowed:** selling it, packaging it into paid products, courses or asset packs,
+or running it as a paid public service.
+
+**Attribution required.** Do not remove credit and claim it as your own original work.
+
+No warranty. Use at your own risk, and back up your data.
