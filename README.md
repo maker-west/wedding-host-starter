@@ -23,6 +23,18 @@
 
 ---
 
+## 不想碰代码：直接拿来用
+
+| 方式 | 适合谁 | 怎么做 |
+|---|---|---|
+| **在线用** | 先看看顺不顺手 | 打开 https://maker-west.github.io/wedding-host-starter/ ，不用装任何东西 |
+| **下载单文件** | 想存在自己电脑上、断网也能用 | 下载 [single-file v1.0.0](https://github.com/maker-west/wedding-host-starter/releases/download/v1.0.0/wedding-host-starter-v1.0.0.html)（449 KB），双击打开 |
+| **下载源码** | 想改成自己的 | `git clone` 本仓库，然后往下看 |
+
+数据全部存在你自己的浏览器里，不上传、不联网也能用。
+
+---
+
 ## 30 秒跑起来
 
 ```bash
